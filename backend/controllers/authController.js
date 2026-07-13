@@ -1,5 +1,5 @@
-import Booking from '../models/Booking.js';
-import OtpStorage from '../models/Otp.js';
+import Booking from '../models/booking.js';
+import OtpStorage from '../models/otp.js';
 import nodemailer from 'nodemailer';
 
 // Strict fallback matrix configuration
