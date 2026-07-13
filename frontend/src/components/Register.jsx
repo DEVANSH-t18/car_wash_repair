@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 const Register = ({ setIsLoggedIn, setUserDetails, setActiveTab }) => {
   const [isSignUp, setIsSignUp] = useState(true);
   const [formData, setFormData] = useState({
@@ -14,7 +16,7 @@ const Register = ({ setIsLoggedIn, setUserDetails, setActiveTab }) => {
     if (!formData.email) return alert("Pehle Email ID daliye, usi par real OTP jayega!");
     
     try {
-      const res = await fetch('http://localhost:5000/api/auth/send-otp', {
+      const res = await fetch(`${API_URL}/api/auth/send-otp`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: formData.email })
@@ -37,7 +39,7 @@ const Register = ({ setIsLoggedIn, setUserDetails, setActiveTab }) => {
     e.preventDefault();
     if (isSignUp) {
       try {
-        const res = await fetch('http://localhost:5000/api/auth/register', {
+        const res = await fetch(`${API_URL}/api/auth/register`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData)
@@ -58,7 +60,7 @@ const Register = ({ setIsLoggedIn, setUserDetails, setActiveTab }) => {
     } else {
       // Login Logic Gateway
       try {
-        const res = await fetch('http://localhost:5000/api/auth/login', {
+        const res = await fetch(`${API_URL}/api/auth/login`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email: formData.email, password: formData.password })

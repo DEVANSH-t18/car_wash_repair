@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 const Admin = () => {
   const [credentials, setCredentials] = useState({ username: '', password: '' });
   const [isAdminAuth, setIsAdminAuth] = useState(false);
@@ -8,7 +10,7 @@ const Admin = () => {
   // Live Database Fetch Loop when Admin is Authenticated
   useEffect(() => {
     if (isAdminAuth) {
-      fetch('http://localhost:5000/api/admin/bookings')
+      fetch(`${API_URL}/api/admin/bookings`)
         .then(res => res.json())
         .then(data => {
           if (Array.isArray(data)) {
